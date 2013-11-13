@@ -1,0 +1,52 @@
+<head>
+  <title>todaysoutfit</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row-fluid">{{loginButtons}}</div>
+    <div class="row-fluid">
+      <div class="span4">{{> general_info_block }}</div>
+      <div class="span4">{{> temperature_block }}</div>
+      <div class="span4">{{> location_block }}</div>
+    </div>
+    <div class="row-fluid">
+    <div class="span4">{{> clothes_block }}</div>
+    </div>
+  </div>
+</body>
+
+<template name="clothes_block">
+<div class="block">
+  {{#each images}}
+    <img src="{{img_url}}"/>
+  {{/each}}
+</div>
+</template>
+
+<template name="general_info_block">
+<div class="block">
+  {{#with weather_data}}
+    <img src="/Aeris_WxIcons_55x55/{{ob.icon}}" class='pull-left'>
+    <h1>{{ob.windDir}}, {{ob.windMPH}} mph</h1>
+  {{/with}}
+</div>
+</template>
+
+<template name="temperature_block">
+<div class="block">
+  {{#with weather_data}}
+    <h1>{{ob.feelslikeF}}°f</h1>
+  {{/with}}
+</div>
+</template>
+
+<template name="location_block">
+<div class="block">
+  {{#with weather_data}}
+    <div>
+      <h1>{{ob.weatherShort}}<br/>{{fromNow ob.dateTimeISO}}, <b>{{place.name}}</b></h1>
+    </div>
+  {{/with}}
+</div>
+</template>
