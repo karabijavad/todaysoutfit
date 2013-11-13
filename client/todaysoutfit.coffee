@@ -12,7 +12,9 @@ Template.clothes_block.images = () ->
 
   if data = Session.get "weather_data"
     if parseFloat(data.ob.snowDepthIN)
-      result.push img_url: "#{snow}.jpg"
+      result.push img_url: "snow-boots.jpg"
+    if parseFloat(data.ob.feelslikeF) < 32
+      result.push img_url: "parka.jpg"
 
   result
 @updateData = () ->
